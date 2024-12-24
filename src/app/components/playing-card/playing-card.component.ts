@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Monster } from '../../models/monster.model';
 
 @Component({
   selector: 'app-playing-card',
@@ -8,12 +9,15 @@ import { Component } from '@angular/core';
 })
 export class PlayingCardComponent {
 
-  name: string = "My Monster";
-  hp : number = 40 ; 
-  figureCaption: string ="N°001 Monster"
-  attackName: string= "Geo Impact";
-  attackStrength: number = 60;
-  attackDescription : string ="This is a long description............";
+ @Input( {
+  alias: 'my-monster',
+  transform: (value: Monster) =>{
+    value.hp = value.hp / 2;
+    return value;
+
+
+  }
+}) monster: Monster = new Monster();
 
 
 }
